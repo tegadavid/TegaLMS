@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Navbar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 10px; /* ✅ helps breathing room */
+}
+
+
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .brand span:first-child {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    ul li button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      background-color: white;
+      color: #007bff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    ul li button:hover {
+      background-color: #007bff;
+      color: white;
+      border: 1px solid #007bff;
+    }
+
+    
+    .auth-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;          /* ✅ prevent from shrinking */
+  margin-left: auto;       /* ✅ push it to right nicely */
+  transform: translateX(-25px);  /* ✅ pull slightly left */
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+    .auth-links a {
+      font-size: 18px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .auth-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+
+
+
+    @media (max-width: 1024px) {
+      .auth-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+
+      .auth-btn.register {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .orders-section {
+  margin-top: 100px;
+  text-align: center;
+  padding: 0 20px; /* ✅ spacing on smaller screens */
+}
+
+.orders-title {
+  font-size: 35px;
+  margin: 10px 0;
+}
+
+.orders-subtitle {
+  font-size: 30px;
+  color: red;
+  margin: 10px 0;
+}
+
+/* ✅ Responsive scaling */
+@media (max-width: 768px) {
+  .orders-title {
+    font-size: 28px;
+  }
+
+  .orders-subtitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-title {
+    font-size: 22px;
+  }
+
+  .orders-subtitle {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <!-- Logo -->
+    <div class="brand">
+      <span>Tega's</span>&nbsp;<span>Library</span>
+    </div>
+
+    <!-- Hamburger for mobile -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">☰</label>
+
+    <!-- Center Menu Links -->
+    <div class="menu">
+      <ul>
+        <li><button>Home</button></li>
+        <li><button>About</button></li>
+        <li><button>Shop</button></li>
+        <li><button>Contact</button></li>
+        <li><button>Orders</button></li>
+      </ul>
+    </div>
+
+    <!-- Right-side Icons + Buttons -->
+    <div class="auth-links">
+      <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="#"><i class="fa-solid fa-user"></i></a>
+      <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+       
+    </div>
+  </div>
+
+  <section class="orders-section">
+  <div>
+    <p class="orders-title">Orders Placed</p>
+    <p class="orders-subtitle">No Orders Yet!</p>
+  </div>
+</section>
+
+
+</body>
+</html>

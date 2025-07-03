@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <title>Users</title>
+</head>
+<style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+ 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 28px; 
+  white-space: nowrap;
+}
+
+
+.brand span:first-child {
+  color: #007bff;
+}
+
+/* Hide toggle checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Center menu by pushing it to center */
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Nav links */
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+ul li {
+  cursor: pointer;
+}
+li button{
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.1s ease;
+    border-radius: 5px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+li button:hover{
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+/* Right-side login/register */
+.auth-links {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.auth-links p {
+  margin: 0;
+  cursor: pointer;
+  
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand {
+    font-size: 20px; /* reduce size */
+    flex-direction: column; /* stack Admin and Dashboard vertically */
+    align-items: flex-start;
+  }
+}
+
+.admin-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.user-box {
+  flex: 1 1 300px; /* grow, shrink, base width */
+  min-width: 250px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-box p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.user-box span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
+/* Small screen improvements */
+@media (max-width: 600px) {
+  .user-box {
+    flex: 1 1 100%;
+  }
+
+  .delete-btn {
+    width: 100%;
+  }
+}
+
+
+
+
+</style>
+<body>
+    
+     <div class="navbar">
+  <!-- Brand / Logo -->
+  <div class="brand">
+    <span>Admin</span><span>Dashboard</span>
+  </div>
+
+  <!-- Checkbox for mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- Menu content -->
+  <div class="menu">
+    <ul>
+  <li><a href="admin-panel.html" style="text-decoration: none;"><button>Home</button></a></li>
+       <li><a href="product.html" style="text-decoration: none;"><button>Products</button></a></li>
+      <li><a href="order.html" style="text-decoration: none;"><button>Orders</button></a></li>
+     <li><a href="users.html" style="text-decoration: none;"><button>Users</button></a></li>
+      <li><a href="message.html" style="text-decoration: none;"><button>Message</button></a></li>
+
+    </ul>
+  </div>
+
+  <!-- Auth links on right -->
+  <div class="auth-links">
+    <a href=""><p><i class="fa-solid fa-user fa-2x"></i></p></a>
+  </div>
+</div>
+
+<section class="admin-section">
+  <div class="user-box">
+    <p><span>Username:</span> <span>Tega</span></p>
+    <p><span>Email:</span> <span>tega@gmail.com</span></p>
+    <p><span>UserType:</span> <span>Admin</span></p>
+    
+    <!-- Delete button placed separately inside the same div -->
+    <button class="delete-btn">Delete</button>
+  </div>
+
+   <div class="user-box">
+    <p><span>Username:</span> <span>Tega</span></p>
+    <p><span>Email:</span> <span>tega@gmail.com</span></p>
+    <p><span>UserType:</span> <span>Admin</span></p>
+    
+    <!-- Delete button placed separately inside the same div -->
+    <button class="delete-btn">Delete</button>
+  </div>
+
+   <div class="user-box">
+    <p><span>Username:</span> <span>Tega</span></p>
+    <p><span>Email:</span> <span>tega@gmail.com</span></p>
+    <p><span>UserType:</span> <span>Admin</span></p>
+    
+    <!-- Delete button placed separately inside the same div -->
+    <button class="delete-btn">Delete</button>
+  </div>
+
+   <div class="user-box">
+    <p><span>Username:</span> <span>Tega</span></p>
+    <p><span>Email:</span> <span>tega@gmail.com</span></p>
+    <p><span>UserType:</span> <span>Admin</span></p>
+    
+    <!-- Delete button placed separately inside the same div -->
+    <button class="delete-btn">Delete</button>
+  </div>
+
+   <div class="user-box">
+    <p><span>Username:</span> <span>Tega</span></p>
+    <p><span>Email:</span> <span>tega@gmail.com</span></p>
+    <p><span>UserType:</span> <span>Admin</span></p>
+    
+    <!-- Delete button placed separately inside the same div -->
+    <button class="delete-btn">Delete</button>
+  </div>
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Add To Cart</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 10px; /* ✅ helps breathing room */
+}
+
+
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .brand span:first-child {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    ul li button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      background-color: white;
+      color: #007bff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    ul li button:hover {
+      background-color: #007bff;
+      color: white;
+      border: 1px solid #007bff;
+    }
+
+    
+    .auth-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;          /* ✅ prevent from shrinking */
+  margin-left: auto;       /* ✅ push it to right nicely */
+  transform: translateX(-25px);  /* ✅ pull slightly left */
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+    .auth-links a {
+      font-size: 18px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .auth-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+
+    .orders-section {
+  margin-top: 100px;
+  text-align: center;
+  padding: 0 20px; /* ✅ spacing on smaller screens */
+}
+
+.orders-title {
+  font-size: 35px;
+  margin: 10px 0;
+  
+}
+
+.orders-subtitle {
+  font-size: 30px;
+  color: red;
+  margin: 10px 0;
+}
+
+/* ✅ Responsive scaling */
+@media (max-width: 768px) {
+  .orders-title {
+    font-size: 28px;
+  }
+
+  .orders-subtitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-title {
+    font-size: 22px;
+  }
+
+  .orders-subtitle {
+    font-size: 18px;
+  }
+ 
+  
+}
+.product-team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+}
+
+.product-wrapper {
+  position: relative;
+  width: 220px;
+}
+
+.cancel-icon {
+  position: absolute;
+  top: -12px;        /* ✅ moves it above */
+  right: -12px;      /* ✅ moves it outside right */
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.product-cart {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.product-cart:hover {
+  transform: translateY(-5px);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.product-title {
+  padding: 10px;
+  text-align: center;
+}
+
+.product-title input {
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0 10px;
+  margin-top: 5px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.form-group button {
+  padding: 10px 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+}
+
+.form-group button:hover {
+  background-color: #0056b3;
+}
+
+.form-group a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .product-wrapper {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-wrapper {
+    width: 100%;
+  }
+
+  .product-title input {
+    width: 80%;
+  }
+}
+
+.footer {
+  background-color: #dad6d6;
+  color: #333;
+  width: 100%;
+  padding: 30px 15px 15px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.cart-summary {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 700px;
+  background-color: #bcb5b5;
+  text-align: center;
+  border-top: 2px solid #eee;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.total-amount {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cart-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 120px;
+}
+
+.delete-all {
+  background-color: red;
+  color: white;
+}
+
+.delete-all:hover {
+  background-color: darkred;
+}
+
+.checkout {
+  background-color: #007bff;
+  color: white;
+}
+
+.checkout:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .total-amount {
+    font-size: 20px;
+  }
+
+  .cart-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-buttons button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+
+.footer {
+  background-color: #111827; /* 🌑 dark background */
+  color: white;
+  width: 100%;
+  padding: 30px 15px 15px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: #007bff;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+  </style>
+</head>
+<body>
+
+  <section>
+        <div class="navbar">
+  <!-- Brand / Logo -->
+  <div class="brand">
+    <span>Tega's</span><span>Library</span>
+  </div>
+
+  <!-- Checkbox for mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- Menu content -->
+  <div class="menu">
+    <ul>
+      <a href="home.html"><li><button>Home</button></li></a>
+      <li><button>About</button></li>
+      <a href="shop.html"><li><button>Shop</button></li></a>
+     <a href="contact.html"><li><button>Contacts</button></li></a>
+      <a href="order.html"><li><button>Orders</button></li></a>
+    </ul>
+  </div>
+
+  <!-- Auth links on right -->
+  <div class="auth-links">
+   <a href="" style="color: #007bff;"><p><i class="fa-solid fa-cart-shopping"></i></p></a>
+   <a href="" style="color: #007bff;"><p><i class="fa-solid fa-user"></i></p></a>
+    <a href="search.html" style="color: #007bff;"><p><i class="fa-solid fa-magnifying-glass"></i></p></a>
+
+  </div>
+</div>
+    </section>
+
+
+  <section class="orders-section">
+  <div>
+    <p class="orders-title">Prdocut Added</p>
+     
+  </div>
+</section>
+
+<section class="product-team">
+  <div class="product-wrapper">
+    <div class="cancel-icon">&times;</div>
+    
+    <div class="product-cart">
+      <div class="image-container">
+        <img src="img/A Million And One.webp" alt="A Million To One">
+      </div>
+      <div class="product-title">
+        <p>A Million To One</p>
+        <p>#1100.00</p>
+        <input type="number" placeholder="Qty">
+      </div>
+      <div class="form-group">
+        <button><a href="">Update</a></button>
+      </div>
+       <div class="product-title">
+      <p><span>Total:</span><span>#1100.00</span></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="product-wrapper">
+    <div class="cancel-icon">&times;</div>
+    
+    <div class="product-cart">
+      <div class="image-container">
+        <img src="img/A Million And One.webp" alt="A Million To One">
+      </div>
+      <div class="product-title">
+        <p>A Million To One</p>
+        <p>#1100.00</p>
+        <input type="number" placeholder="Qty">
+      </div>
+      <div class="form-group">
+        <button><a href="">Update</a></button>
+      </div>
+       <div class="product-title">
+      <p><span>Total:</span><span>#1100.00</span></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="product-wrapper">
+    <div class="cancel-icon">&times;</div>
+    
+    <div class="product-cart">
+      <div class="image-container">
+        <img src="img/A Million And One.webp" alt="A Million To One">
+      </div>
+      <div class="product-title">
+        <p>A Million To One</p>
+        <p>#1100.00</p>
+        <input type="number" placeholder="Qty">
+      </div>
+      <div class="form-group">
+        <button><a href="">Update</a></button>
+      </div>
+       <div class="product-title">
+      <p><span>Total:</span><span>#1100.00</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cart-summary">
+  <p class="total-amount">Total: ₦0.00</p>
+  <div class="cart-buttons">
+    <button class="delete-all">Delete All</button>
+    <button class="checkout">Checkout</button>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Tega's Library</h3>
+      <p>Bringing knowledge closer to you.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Orders</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Tega's Library. All rights reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

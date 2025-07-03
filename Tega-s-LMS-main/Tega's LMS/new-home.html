@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 10px; /* ✅ helps breathing room */
+}
+
+
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .brand span:first-child {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    ul li button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      background-color: white;
+      color: #007bff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    ul li button:hover {
+      background-color: #007bff;
+      color: white;
+      border: 1px solid #007bff;
+    }
+
+    
+    .auth-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;          /* ✅ prevent from shrinking */
+  margin-left: auto;       /* ✅ push it to right nicely */
+  transform: translateX(-25px);  /* ✅ pull slightly left */
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+    .auth-links a {
+      font-size: 18px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .auth-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+
+
+
+    @media (max-width: 1024px) {
+      .auth-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+
+      .auth-btn.register {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .orders-section {
+  margin-top: 100px;
+  text-align: center;
+  padding: 0 20px; /* ✅ spacing on smaller screens */
+}
+
+.orders-title {
+  font-size: 35px;
+  margin: 10px 0;
+}
+
+.orders-subtitle {
+  font-size: 30px;
+  color: red;
+  margin: 10px 0;
+}
+
+/* ✅ Responsive scaling */
+@media (max-width: 768px) {
+  .orders-title {
+    font-size: 28px;
+  }
+
+  .orders-subtitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-title {
+    font-size: 22px;
+  }
+
+  .orders-subtitle {
+    font-size: 18px;
+  }
+}
+
+
+.books {
+  background-image: url('img/4.jpg'); /* replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.books::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* This dims it */
+  z-index: 1;
+}
+
+.books > div {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.books p:first-child {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.books p:last-child {
+  font-size: 1.2rem;
+}
+
+
+.product-team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  
+}
+
+.product-cart {
+  padding: 15px;
+  border-radius: 8px;
+  width: calc(25% - 20px); /* 4 per row */
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(154, 145, 145, 0.5);
+  box-sizing: border-box;
+  text-align: center;
+
+}
+
+.product-cart img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-title {
+  text-align: center;
+  margin: 10px 0;
+ 
+}
+
+.product-title p:first-child {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.product-title p:last-child {
+  color: #555;
+  font-size: 20px;
+}
+
+.form-groupp {
+  margin-top: 10px;
+  
+}
+
+/* Buttons inside product */
+.form-groupp button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 15px 60px;
+  width: 100%;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.form-groupp button:hover {
+  background-color: #0056b3;
+}
+
+.product-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ centers everything inside */
+  justify-content: center;
+  text-align: center;  /* ✅ centers text and input */
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: white;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 10px;
+}
+
+.price-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.product-title p {
+  margin: 10px 0;
+}
+
+.form-groupp {
+  margin-top: 10px;
+}
+
+ 
+
+/* 🔁 Responsive Adjustments */
+@media (max-width: 1024px) {
+  .product-cart {
+    width: calc(50% - 20px); /* 2 per row on tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .product-cart {
+    width: 100%; /* 1 per row on mobile */
+  }
+}  .about {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: 	#e6f0ff; /* ✅ background covers full width */
+    padding: 10px 10px;
+    box-sizing: border-box;
+  }
+
+  .about .left,
+  .about .right {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+ .about .left img {
+  width: 100%;
+  max-width: 500px; /* ✅ limits image width */
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto; /* ✅ center the image horizontally */
+}
+
+
+  .about .right p:first-child {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 180px;
+  }
+
+  .about .right p:last-child {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* ✅ Make layout stack on smaller screens */
+  @media (max-width: 768px) {
+    .about {
+      flex-direction: column;
+      padding: 30px 10px;
+    }
+
+    .about .right p:first-child {
+      font-size: 28px;
+    }
+
+    .about .right p:last-child {
+      font-size: 16px;
+    }
+  }
+.footer {
+  background-color: #dad6d6;
+  color: #333;
+  width: 100%;
+  padding: 30px 15px 15px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: #007bff;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    margin-bottom: 20px;
+  }
+}
+
+
+.about {
+background-color: #0f172a;  /* Rich dark slate */
+
+  color: white;
+  display: flex;
+  flex-wrap: wrap;  
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.about .left,
+.about .right {
+  flex: 1 1 300px;  
+  max-width: 600px;
+}
+
+.about img {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.about .right div {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.contact-banner {
+  
+  color: black;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.contact-content h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.contact-content p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto 25px;
+  line-height: 1.6;
+}
+
+.contact-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Responsive Styling */
+@media (max-width: 600px) {
+  .contact-content h2 {
+    font-size: 24px;
+  }
+
+  .contact-content p {
+    font-size: 16px;
+  }
+
+  .contact-btn {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+
+
+.footer {
+  background-color: #111827; /* 🌑 dark background */
+  color: white;
+  width: 100%;
+  padding: 30px 15px 15px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: #007bff;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <!-- Logo -->
+    <div class="brand">
+      <span>Tega's</span>&nbsp;<span>Library</span>
+    </div>
+
+    <!-- Hamburger for mobile -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">☰</label>
+
+    <!-- Center Menu Links -->
+    <div class="menu">
+       <ul>
+<a href="new-home.html"><li><button>Home</button></li></a>
+      <a href="shop.html"><li><button>Shop</button></li></a>
+     <a href="contact.html"><li><button>Contacts</button></li></a>
+      <a href="users.order.html"><li><button>Orders</button></li></a>
+    </ul>
+    </div>
+
+    <!-- Right-side Icons + Buttons -->
+    <div class="auth-links">
+      <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="#"><i class="fa-solid fa-user"></i></a>
+      <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+       
+    </div>
+  </div>
+
+ 
+  <section>
+        <div class="books">
+            <div>
+                <p>The Bookshelves</p>
+                <p>Explore Discover, Check Out Our New Book</p>
+                <button style="padding: 2rem; font-size: 20px;">Discover More</button>
+            </div>
+        </div>
+    </section>
+
+     <section class="product-team">
+<div class="product-cart">
+  <div class="image-container">
+    <div class="price-tag">#1200</div>
+    <img src="img/A Million And One.webp" alt="" style="width: 100%;">
+  </div>
+
+  <div class="product-title">
+    <p>A Million To One</p>
+    <p><input type="number" style="width: 50%; height: 30px; outline: none;"></p>
+  </div>
+
+  <div>
+    <div class="form-groupp">
+      <button type="submit">
+        <a href="add.html" style="color: white; text-decoration: none;">Add To Cart</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="product-cart">
+  <div class="image-container">
+    <div class="price-tag">#1500</div>
+    <img src="img/Sugar Run.jfif" alt="" style="width: 100%;">
+  </div>
+
+  <div class="product-title">
+    <p>Sugar Run</p>
+    <p><input type="number" style="width: 50%; height: 30px; outline: none;"></p>
+  </div>
+
+  <div>
+    <div class="form-groupp">
+      <button type="submit">
+        <a href="add.html" style="color: white; text-decoration: none;">Add To cart</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product-cart">
+  <div class="image-container">
+    <div class="price-tag">#1100</div>
+    <img src="img/Harry-Potter.jfif" alt="" style="width: 100%;">
+  </div>
+
+  <div class="product-title">
+    <p>Harry Potter</p>
+    <p><input type="number" style="width: 50%; height: 30px; outline: none;"></p>
+  </div>
+
+  <div>
+    <div class="form-groupp">
+      <button type="submit">
+        <a href="add.html" style="color: white; text-decoration: none;">Add To Cart</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product-cart">
+  <div class="image-container">
+    <div class="price-tag">#1200</div>
+    <img src="img/They-Hunt.jpg" alt="" style="width: 100%;">
+  </div>
+
+  <div class="product-title">
+    <p>They Hunt</p>
+    <p><input type="number" style="width: 50%; height: 30px; outline: none;"></p>
+  </div>
+
+  <div>
+    <div class="form-groupp">
+      <button type="submit">
+        <a href="add.html" style="color: white; text-decoration: none;">Add To Cart</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<section class="about">
+  <div class="left">
+    <img src="img/3.jpg" alt="Library image">
+  </div>
+  <div class="right">
+    <p style="text-align: center;">Discover Our Story</p>
+    <p style="text-align: center;">
+      At Tega's Library, we are passionate about connecting readers with captivating stories, inspiring ideas, and a world of knowledge. 
+      Our bookstore is more than just a place to buy books; it’s a safe space for book enthusiasts, where the love of literature thrives.
+    </p>
+  </div>
+</section>
+
+
+
+<section class="contact-banner">
+  <div class="contact-content">
+    <h2>Have Any Questions?</h2>
+    <p>
+      We're always here to help. Whether you have a question about our books, your order,
+      or anything else – feel free to reach out. Our team will get back to you shortly!
+    </p>
+    <a href="contact.html" class="contact-btn">Contact Us</a>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Tega's Library</h3>
+      <p>Bringing knowledge closer to you.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Orders</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Tega's Library. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

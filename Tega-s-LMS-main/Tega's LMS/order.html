@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Order</title>
+  <style>
+       body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+ 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 28px; 
+  white-space: nowrap;
+}
+
+
+.brand span:first-child {
+  color: #007bff;
+}
+
+/* Hide toggle checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Center menu by pushing it to center */
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Nav links */
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+ul li {
+  cursor: pointer;
+}
+li button{
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.1s ease;
+    border-radius: 5px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+li button:hover{
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+/* Right-side login/register */
+.auth-links {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.auth-links p {
+  margin: 0;
+  cursor: pointer;
+  
+}
+
+
+ .admin-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Buttons — 4 per row on large screen */
+.admin-section > div {
+  flex: 1 1 calc(25% - 20px); /* 4 per row minus the gap */
+  max-width: calc(25% - 20px);
+}
+
+button.a {
+  width: 100%;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button.a:hover {
+  background-color: #0056b3;
+}
+
+ 
+
+button.a p {
+  margin: 5px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Responsive for tablets and phones */
+@media (max-width: 1024px) {
+  .admin-section > div {
+    flex: 1 1 calc(50% - 20px); /* 2 per row */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-section > div {
+    flex: 1 1 100%; /* 1 per row on small phones */
+    max-width: 100%;
+  }
+
+  button.a {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  button.a p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand {
+    font-size: 20px; /* reduce size */
+    flex-direction: column; /* stack Admin and Dashboard vertically */
+    align-items: flex-start;
+  }
+}
+
+    .orders-section {
+  margin-top: 100px;
+  text-align: center;
+  padding: 0 20px; /* ✅ spacing on smaller screens */
+}
+
+.orders-title {
+  font-size: 35px;
+  margin: 10px 0;
+}
+
+.orders-subtitle {
+  font-size: 30px;
+  color: red;
+  margin: 10px 0;
+}
+
+/* ✅ Responsive scaling */
+@media (max-width: 768px) {
+  .orders-title {
+    font-size: 50px;
+    padding-top: 350px;
+  }
+
+  .orders-subtitle {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-title {
+    font-size: 22px;
+  }
+
+  .orders-subtitle {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+  <!-- Brand / Logo -->
+  <div class="brand">
+    <span>Admin</span><span>Dashboard</span>
+  </div>
+
+  <!-- Checkbox for mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- Menu content -->
+  <div class="menu">
+  <ul>
+  <li><a href="admin-panel.html" style="text-decoration: none;"><button>Home</button></a></li>
+       <li><a href="product.html" style="text-decoration: none;"><button>Products</button></a></li>
+      <li><a href="order.html" style="text-decoration: none;"><button>Orders</button></a></li>
+     <li><a href="users.html" style="text-decoration: none;"><button>Users</button></a></li>
+    <li><a href="message.html" style="text-decoration: none;"><button>Message</button></a></li>
+
+    </ul>
+  </div>
+
+  <!-- Auth links on right -->
+  <div class="auth-links">
+    <a href=""><p><i class="fa-solid fa-user fa-2x"></i></p></a>
+  </div>
+</div>
+
+  <section class="orders-section">
+  <div>
+    <p class="orders-title">Orders Placed</p>
+    <p class="orders-subtitle">No Orders Yet!</p>
+  </div>
+</section>
+
+
+</body>
+</html>

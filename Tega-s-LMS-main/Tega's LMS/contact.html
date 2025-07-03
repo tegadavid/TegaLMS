@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Contact</title>
+</head>
+<style>
+   
+
+
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 10px; /* ✅ helps breathing room */
+}
+
+
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      white-space: nowrap;
+    }
+
+    .brand span:first-child {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    ul li button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      background-color: white;
+      color: #007bff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    ul li button:hover {
+      background-color: #007bff;
+      color: white;
+      border: 1px solid #007bff;
+    }
+
+    
+    .auth-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;          /* ✅ prevent from shrinking */
+  margin-left: auto;       /* ✅ push it to right nicely */
+  transform: translateX(-25px);  /* ✅ pull slightly left */
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+    .auth-links a {
+      font-size: 18px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .auth-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 20px;
+        align-items: flex-start;
+      }
+
+      .menu-toggle:checked + .hamburger + .menu {
+        display: flex;
+      }
+
+      ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .auth-links {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .auth-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+
+      .auth-btn.register {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+
+    .a{
+  font-family: Arial, sans-serif;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+/* .bills{
+  background: black;
+} */
+.form-box {
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 700px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 1px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.form-group label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  padding: 0 4px;
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown):valid + label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #333;
+}
+
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.register{
+  text-align: center;
+  color:  #007bff;;
+}
+ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+ 
+}
+li{
+  list-style: none;
+}
+   
+
+
+
+.footer {
+  background-color: #111827; /* 🌑 dark background */
+  color: white;
+  width: 100%;
+  padding: 30px 15px 15px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: #007bff;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+
+</style>
+<body>
+    
+     <section>
+        <div class="navbar">
+  <!-- Brand / Logo -->
+  <div class="brand">
+    <span>Tega's</span><span>Library</span>
+  </div>
+
+  <!-- Checkbox for mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- Menu content -->
+  <div class="menu">
+    <ul>
+<a href="new-home.html"><li><button>Home</button></li></a>
+      <a href="shop.html"><li><button>Shop</button></li></a>
+     <a href="contact.html"><li><button>Contacts</button></li></a>
+      <a href="users.order.html"><li><button>Orders</button></li></a>
+    </ul>
+  </div>
+
+  <!-- Auth links on right -->
+  <div class="auth-links">
+   <a href="" style="color: #007bff;"><p><i class="fa-solid fa-cart-shopping"></i></p></a>
+   <a href="" style="color: #007bff;"><p><i class="fa-solid fa-user"></i></p></a>
+    <a href="search.html" style="color: #007bff;"><p><i class="fa-solid fa-magnifying-glass"></i></p></a>
+
+  </div>
+</div>
+
+
+
+
+ <div class="a">
+    <form class="form-box">
+    <p class="register" style="font-weight: bold; font-size: 30px;">Contact Us</p>
+
+    <div class="form-group">
+      <input type="name" id="name" required />
+      <label for="name">Enter Your Name</label>
+    </div>
+    
+    <div class="form-group">
+      <input type="email" id="email" required />
+      <label for="email">Enter Your Email</label>
+    </div>
+
+   
+    <div class="form-group">
+      <input type="number" id="number" required />
+      <label for="password">Enter Your Number</label>
+    </div>
+
+ <div class="form-group">
+      <textarea name="" id="" style="width: 100%; outline: none;" cols="30" rows="20" ></textarea>
+    
+    </div>
+    
+<!--     
+    <div class="form-links">
+      <a href="#">Forgot Password?</a> <span> <a href="registerPage.html">Register Now</a></span>
+    </div> -->
+    <div class="form-group">
+      <button type="submit"><a href="home.html" style="color: white; text-decoration: none;">Send Message</a></button>
+    </div>
+  </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Tega's Library</h3>
+      <p>Bringing knowledge closer to you.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Orders</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Tega's Library. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>

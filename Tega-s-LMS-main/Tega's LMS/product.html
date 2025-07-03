@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Product</title>
+</head>
+<style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.register{
+  font-weight: bold;
+  font-size: 40px;
+}
+ 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 28px; 
+  white-space: nowrap;
+}
+
+
+.brand span:first-child {
+  color: #007bff;
+}
+
+/* Hide toggle checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Center menu by pushing it to center */
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Nav links */
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+ul li {
+  cursor: pointer;
+}
+li button{
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.1s ease;
+    border-radius: 5px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+li button:hover{
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+/* Right-side login/register */
+.auth-links {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.auth-links p {
+  margin: 0;
+  cursor: pointer;
+  
+}
+.product-team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  
+}
+
+.product-cart {
+  padding: 15px;
+  border-radius: 8px;
+  width: calc(25% - 20px); /* 4 per row */
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  text-align: center;
+
+}
+
+.product-cart img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-title {
+  text-align: center;
+  margin: 10px 0;
+ 
+}
+
+.product-title p:first-child {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.product-title p:last-child {
+  color: #555;
+  font-size: 20px;
+}
+
+.form-groupp {
+  margin-top: 10px;
+}
+
+/* Buttons inside product */
+.form-groupp button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-groupp button:hover {
+  background-color: #0056b3;
+}
+
+/* 🔁 Responsive Adjustments */
+@media (max-width: 1024px) {
+  .product-cart {
+    width: calc(50% - 20px); /* 2 per row on tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .product-cart {
+    width: 100%; /* 1 per row on mobile */
+  }
+}
+
+ 
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+
+  .menu-toggle:checked + .hamburger + .menu {
+    display: flex;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  ul li button:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+  }
+
+  .auth-links {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand {
+    font-size: 20px; /* reduce size */
+    flex-direction: column; /* stack Admin and Dashboard vertically */
+    align-items: flex-start;
+  }
+}
+
+
+
+</style>
+<body>
+    
+     <div class="navbar">
+  <!-- Brand / Logo -->
+  <div class="brand">
+    <span>Admin</span><span>Dashboard</span>
+  </div>
+
+  <!-- Checkbox for mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- Menu content -->
+  <div class="menu">
+  <ul>
+  <li><a href="admin-panel.html" style="text-decoration: none;"><button>Home</button></a></li>
+       <li><a href="product.html" style="text-decoration: none;"><button>Products</button></a></li>
+      <li><a href="order.html" style="text-decoration: none;"><button>Orders</button></a></li>
+     <li><a href="users.html" style="text-decoration: none;"><button>Users</button></a></li>
+    <li><a href="message.html" style="text-decoration: none;"><button>Message</button></a></li>
+
+    </ul>
+  </div>
+
+  <!-- Auth links on right -->
+  <div class="auth-links">
+     <a href=""><p><i class="fa-solid fa-user fa-2x"></i></p></a>
+  </div>
+</div>
+
+<section>
+  <div>
+    <div class="a">
+      <form class="form-box">
+    <p class="register" >Add Product</p>
+    
+    <div class="form-group">
+      <input type="email" id="email" required />
+      <label for="email">Enter Product Name</label>
+    </div>
+
+   
+    <div class="form-group">
+      <input type="password" id="password" required />
+      <label for="password">Enter Product Price</label>
+    </div>
+
+    <div class="form-group">
+       <input type="file" accept="image/*" style="padding-left: 10px;">
+    </div>
+    <div class="form-group">
+      <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Add Product</a></button>
+    </div>
+    
+  </form>
+    </div>
+  </div>
+
+  <!-- <div class="a">
+    <form class="form-box">
+     <div class="form-group" style="align-items: center;justify-content: center; display: flex;flex-direction: column;">
+      <img src="img/A Million And One.webp" alt="" style="width: 50%; height: auto;">
+      <span style="font-size: 30px; padding-top: 10px;">A Million And One</span>
+      <spa style="padding-top: 10px;">#1200.00</spa>
+     </div>
+ 
+    <div class="form-group" style="display: flex; flex-direction: row; gap: 20px;">
+      <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Update</a></button>
+      <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Delete</a></button>
+ 
+    </div>
+    
+  </form>
+  </div> -->
+
+</section>
+
+<section class="product-team">
+ <div class="product-cart">
+   
+   
+    <div>
+       <div class="form-groupp">
+        <img src="img/A Million And One.webp" alt="" style="width: 50%;">
+        </div>
+    </div>
+
+     <div class="product-title">
+      <p>Add Product</p>
+      <p>#1200.00</p>
+    </div>
+
+    
+
+    <div>
+       <div class="form-groupp" style="display: flex; flex-direction: row; gap: 20px;">
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none; ">Update</a></button>
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Delete</a></button>
+    </div>
+    </div>
+
+
+  </div>
+
+   <div class="product-cart">
+   
+   
+    <div>
+       <div class="form-groupp">
+        <img src="img/They-Hunt.jpg" alt="" style="width: 50%;">
+        </div>
+    </div>
+
+     <div class="product-title">
+      <p>They Hunt</p>
+      <p>#1200.00</p>
+    </div>
+
+    
+
+    <div>
+       <div class="form-groupp" style="display: flex; flex-direction: row; gap: 20px;">
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none; ">Update</a></button>
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Delete</a></button>
+    </div>
+    </div>
+
+
+  </div>
+
+ <div class="product-cart">
+   
+   
+    <div>
+       <div class="form-groupp">
+        <img src="img/Harry-Potter.jfif" alt="" style="width: 50%;">
+        </div>
+    </div>
+
+     <div class="product-title">
+      <p>Harry Potter</p>
+      <p>#1100.00</p>
+    </div>
+
+    
+
+    <div>
+       <div class="form-groupp" style="display: flex; flex-direction: row; gap: 20px;">
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none; ">Update</a></button>
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Delete</a></button>
+    </div>
+    </div>
+
+
+  </div>
+
+  <div class="product-cart">
+   
+   
+    <div>
+       <div class="form-groupp">
+        <img src="img/Sugar Run.jfif" alt="" style="width: 50%;">
+        </div>
+    </div>
+
+     <div class="product-title">
+      <p>Sugar Run</p>
+      <p>#1500.00</p>
+    </div>
+
+    
+
+    <div>
+       <div class="form-groupp" style="display: flex; flex-direction: row; gap: 20px;">
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none; ">Update</a></button>
+        <button type="submit"><a href="search.html" style="color: white; text-decoration: none;">Delete</a></button>
+    </div>
+    </div>
+
+
+  </div>
+
+   
+</section>
+
+ 
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
